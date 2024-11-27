@@ -5,7 +5,7 @@ from langchain_pinecone import PineconeVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.llms import HuggingFaceHub
 from langchain.chains import RetrievalQA
-
+import streamlit as st
 
 from pinecone import Pinecone
 
@@ -78,7 +78,7 @@ from pinecone import Pinecone
 
 
 
-
+@st.cache_resource
 def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_token):
     # Initialize Pinecone
     pc = Pinecone(api_key=pinecone_api_key)

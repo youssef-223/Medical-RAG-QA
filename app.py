@@ -100,13 +100,15 @@ if st.button("Get Answer"):
                     if source_docs:
                         st.write("### Source Documents")
                         for i, doc in enumerate(source_docs, start=1):
+                            # Extract attributes directly from the Document object
                             st.markdown(f"### Document {i}")
-                            st.markdown(f"**ID:** {doc['id']}")
-                            st.markdown(f"**Title:** {doc['metadata']['title']}")
-                            st.markdown(f"**Content:**\n{doc['page_content']}")
+                            st.markdown(f"**ID:** {doc.id}")  # Accessing the 'id' attribute
+                            st.markdown(f"**Title:** {doc.metadata.get('title', 'No Title')}")  # Safely accessing 'metadata'
+                            st.markdown(f"**Content:**\n{doc.page_content}")  # Accessing 'page_content'
                             st.markdown("---")  # Divider for each document
                     else:
                         st.info("No source documents available.")
+
 
             except Exception as e:
                 # Log the error and show an error message

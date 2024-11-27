@@ -99,4 +99,4 @@ def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_
     # Create RetrievalQA pipeline
     qa_pipeline = RetrievalQA.from_chain_type(llm=hf_llm, retriever=retriever, return_source_documents=True)
 
-    return qa_pipeline
+    return qa_pipeline 

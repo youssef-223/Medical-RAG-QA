@@ -79,7 +79,7 @@ from pinecone import Pinecone
 
 
 @st.cache_resource
-def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_token):
+def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_token,llm_model_id):
     # Initialize Pinecone
     pc = Pinecone(api_key=pinecone_api_key)
     index = pc.Index(pinecone_index_name)

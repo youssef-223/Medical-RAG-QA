@@ -64,7 +64,7 @@ pinecone_index_name = os.getenv("PINECONE_INDEX_NAME")
 
 # Initialize the RAG pipeline
 try:
-    qa_pipeline = initialize_RetrievalQA_pipeline(pinecone_index_name, pinecone_api_key, hf_api_token)
+    qa_pipeline = initialize_RetrievalQA_pipeline(pinecone_index_name, pinecone_api_key, hf_api_token,llm_model_id="meta-llama/Llama-3.2-3B-Instruct")
     st.success("Pipeline initialized successfully!")
 except Exception as e:
     logger.error(f"Failed to initialize the pipeline: {e}")

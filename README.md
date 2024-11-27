@@ -55,10 +55,11 @@ pip install -r requirements.txt
 - Create an index and note your **API Key**.
 - Update the Pinecone configuration in the `.env` file:
 
-```python
+```.env
 PINECONE_API_KEY=''
 HF_HUB_API_TOKEN=''
 PINECONE_INDEX_NAME=''
+NGROK_AUTH=''
 ```
 
 ## **4. Usage**
@@ -139,6 +140,8 @@ for i, doc in enumerate(source_docs, start=1):
    - Fine-tune LLaMA models for specific medical contexts.
 - User Feedback:
    - Add a feature to collect user feedback for continuous improvement.
+- Use different chains:
+   - Experience different langchain chains like StuffChain, MapReducechain.
 
 
 

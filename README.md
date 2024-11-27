@@ -1,124 +1,83 @@
-# Medical RAG-QA: Retrieval-Augmented Generation for Medical and Clinical Knowledge
+# **Medical Retrieval-Augmented Question Answering (RAG) System**
 
-This project implements a **Retrieval-Augmented Generation (RAG)** architecture to answer medical and clinical questions based on a given dataset. It combines the power of **retrieval** to fetch relevant context with **generation** to produce coherent and accurate answers.
-
-The dataset used in this project contains two main fields:
-- **page_title**: The title of the source document.
-- **page_text**: The detailed content of the document, from which context is retrieved.
-
-The system is designed to retrieve the most relevant text passages and use them to answer questions, providing a helpful and user-friendly interface for medical professionals, researchers, and enthusiasts.
+This project implements a **Retrieval-Augmented Generation (RAG)** system tailored for answering medical and clinical queries. It leverages advanced retrieval and natural language generation technologies to provide accurate and reliable answers supported by contextually relevant source documents.
 
 ---
 
-## Features
-
-- **RAG Architecture**: Combines context retrieval with natural language generation for accurate answers.
-- **Streamlit Interface**: A user-friendly interface to input queries and get real-time answers.
-- **Source Document Display**: Allows users to view the documents used for generating the answers.
-- **Customizable Backend**: Flexible pipeline that can be extended to other datasets or domains.
-
----
-
-## How It Works
-
-1. **Question Input**: The user inputs a medical or clinical question via the Streamlit interface.
-2. **Context Retrieval**: The RAG pipeline retrieves the most relevant passages from the dataset using retrieval models.
-3. **Answer Generation**: The retrieved context is passed to a language model, which generates a coherent answer.
-4. **Source Documents**: Users can view the source documents for transparency and validation.
+## **Key Features**
+- **Knowledge Retrieval**: Efficiently retrieves relevant medical information from a knowledge base using Pinecone.
+- **Natural Language Understanding**: Processes and generates human-like responses using state-of-the-art language models (LLaMA 1B and 3B).
+- **Explainability**: Returns source documents alongside answers for improved transparency and validation.
+- **Scalable Architecture**: Built on robust components like Pinecone and LangChain to handle large knowledge bases.
 
 ---
 
-## Key Components
+## **Technologies Used**
 
-- **Streamlit Frontend**: Simplifies interaction with the system through a web interface.
-- **NGROK Deployment**: Enables hosting and sharing the app via public URLs.
-- **Regex Answer Extraction**: Extracts concise, helpful answers from model-generated results.
-- **Error Handling**: Handles edge cases gracefully, providing feedback to users.
+### 1. **LangChain**
+- Framework for building language model-powered applications.
+- Manages the `RetrievalQA` chain to combine document retrieval with natural language answer generation.
 
----
+### 2. **Pinecone**
+- Vector database for storing and retrieving document embeddings.
+- Facilitates fast and accurate retrieval of relevant documents for the query.
 
-## Setup and Installation
+### 3. **LLaMA Models**
+- **LLaMA 1B**: Efficient for smaller-scale tasks with faster inference.
+- **LLaMA 3B**: Provides richer, more accurate responses for complex queries.
+- Models are hosted using HuggingFace's Hub.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/youssef-223/Medical-RAG-QA.git
-   cd Medical-RAG-QA
-   ```
-   
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   
-3. Start the Streamlit app:
-    ```bash
-    streamlit run app.py
-    ```
-
-4. (Optional) Deploy using NGROK
-
-    1. Install NGROK: [Download here](https://ngrok.com/download).
-    2. Run the following command:
-     ```bash
-     ngrok http 8501
-     ```
----
-
-## Dataset
-
-The dataset contains two columns:
-
-- **`page_title`**: Title of the document.
-- **`page_text`**: The text body used for answering questions.
-
-The context is retrieved from `page_text` to generate answers.
+### 4. **RetrievalQA Chain**
+- Integrates retrieval (Pinecone) and language generation (LLaMA models).
+- Ensures that answers are contextually accurate and traceable to source documents.
 
 ---
 
-## Usage
+## **Setup and Installation**
 
-1. Run the app using the Streamlit command.
-2. Enter your question in the input box.
-3. Click the **Get Answer** button to fetch an answer.
-4. If enabled, view the source documents used for generating the answer.
+Follow these steps to set up the project locally:
 
----
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/youssef-223/Medical-RAG-QA.git
+cd Medical-RAG-QA
+```
 
-## Example
+### **2. Install Dependencies***
+Ensure you have Python 3.9+ installed. Install required libraries using:
+```bash
+pip install -r requirements.txt
+```
 
-### Query:
+### **3. Configure Pinecone**
 
-_What are other names for Paracetamol?_
+- Sign up at [Pinecone](https://www.pinecone.io/).
+- Create an index and note your **API Key** and **Environment**.
+- Update the Pinecone configuration in the code:
 
-### Generated Answer:
+```python
+pinecone.init(api_key="YOUR_API_KEY", environment="YOUR_ENVIRONMENT")
+```
 
-_Other names for paracetamol include Tylenol, Panadol, and Nuprin._
+## **4. Usage**
 
----
+### **Running the Application**
 
-## Contributing
+1. Start the application:
 
-Contributions are welcome! To contribute:
+```bash
+streamlit run app.py
+```
 
-1. Fork the repository.
-2. Create a feature branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes and push:
-   ```bash
-    git push origin feature-name
-   ```
-4. Create a pull request.
+2. Open the provided URL in your browser to interact with the interface.
 
----
+### **4. Querying the System**
 
-### License
-This project is licensed under the MIT License. See the LICENSE file for details.
+- Enter a medical or clinical question into the input box.
+- Example query: _"What are the symptoms of cholera?"_
+- Click the **"Get Answer"** button to receive the response.
 
----
+![alt text](image.png)
 
-### Contact
-For any questions or support, feel free to reach out:
 
-GitHub Issues:[Open an issue](https://github.com/youssef-223/Medical-RAG-QA/issues)
+

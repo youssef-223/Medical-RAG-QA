@@ -91,8 +91,8 @@ def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_
 
     # Initialize Hugging Face model
     hf_llm = HuggingFaceHub(
-        repo_id="meta-llama/Llama-3.2-1B-Instruct",
-        model_kwargs={"max_length": 600, "truncation": True, "do_sample": False},
+        repo_id=llm_model_id,
+        model_kwargs={"max_length": 1200, "truncation": True, "do_sample": False},
         huggingfacehub_api_token=hf_api_token
     )
 

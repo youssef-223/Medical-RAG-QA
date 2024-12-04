@@ -64,7 +64,7 @@ pinecone_index_name = os.getenv("PINECONE_INDEX_NAME")
 
 # Initialize the RAG pipeline
 try:
-    qa_pipeline = initialize_RetrievalQA_pipeline(pinecone_index_name, pinecone_api_key, hf_api_token,llm_model_id="meta-llama/Llama-3.2-3B-Instruct")
+    qa_pipeline = initialize_RetrievalQA_pipeline(pinecone_index_name, pinecone_api_key, hf_api_token,llm_model_id="meta-llama/Llama-3.2-1B-Instruct")
     st.success("Pipeline initialized successfully!")
 except Exception as e:
     logger.error(f"Failed to initialize the pipeline: {e}")
@@ -86,13 +86,20 @@ if st.button("Get Answer"):
             try:
                 # Call the RAG pipeline with the query
                 # result = qa_pipeline({"query": query})
-                result = qa_pipeline({"query": query, "max_length": 512})  # Adjust as needed
+                result = qa_pipeline({"query": query})  # Adjust as needed
 
 
-                # Extract the helpful answer
-                match = re.search(r"Helpful Answer:\s*(.*)", result['result'])
-                helpful_answer = match.group(1).strip() if match else "No helpful answer found."
-                st.write(f"**Answer:** {helpful_answer}")
+                
+                # # Extract the helpful answer
+                # match = re.search(r"Helpful Answer:\s*(.*)", result['result'], re.DOTALL)
+                # helpful_answer = match.group(1).strip() if match else "No helpful answer found."
+                # st.write(f"**Answer:** {helpful_answer}")
+                context = result['result']
+                start_index = context.find("Helpful Answer:")
+                extracted_string = context[start_index:].strip().replace("Helpful Answer: " , "")
+                # If you still want to use print for debugging, this will print it in the server log, not the UI
+                print(extracted_string)
+
 
                 # Display source documents if the checkbox is checked
                 if show_sources:

@@ -93,7 +93,7 @@ def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_
     hf_llm = HuggingFaceHub(
         repo_id=llm_model_id,
         model_kwargs={
-        "max_new_tokens ": 512,
+        "max_new_tokens": 512,
         "return_full_text":True,
         "device":'auto',
         "top_p": 0.15,

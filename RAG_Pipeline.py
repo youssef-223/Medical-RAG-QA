@@ -79,7 +79,7 @@ from pinecone import Pinecone
 
 
 @st.cache_resource
-def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_token,llm_model_id):
+def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_token,llm_model_id, top_k):
     # Initialize Pinecone
     pc = Pinecone(api_key=pinecone_api_key)
     index = pc.Index(pinecone_index_name)
@@ -87,7 +87,7 @@ def initialize_RetrievalQA_pipeline(pinecone_index_name,pinecone_api_key,hf_api_
 
 
     # Initialize retriever
-    retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+    retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": top_k})
 
     # Initialize Hugging Face model
     hf_llm = HuggingFaceHub(

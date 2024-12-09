@@ -85,9 +85,9 @@ streamlit run app.py
    - A concise and helpful answer.
    - Relevant source documents for reference.
 
-![alt text](image.png)
+![alt text](images/image.png)
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 
 ## Architecture
